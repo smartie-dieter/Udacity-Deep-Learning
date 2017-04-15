@@ -12399,7 +12399,7 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">decoding_layer</span><span class="p">(</span><span class="n">dec_embed_input</span><span class="p">,</span> <span class="n">dec_embeddings</span><span class="p">,</span> <span class="n">encoder_state</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">rnn_size</span><span class="p">,</span>
@@ -12433,10 +12433,10 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
     <span class="n">end_of_sequence_id</span> <span class="o">=</span> <span class="n">target_vocab_to_int</span><span class="p">[</span><span class="s1">&#39;&lt;EOS&gt;&#39;</span><span class="p">]</span>
     <span class="n">maximum_length</span> <span class="o">=</span> <span class="n">sequence_length</span>
     
-    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
     <span class="n">inference_logits</span> <span class="o">=</span> <span class="n">decoding_layer_infer</span><span class="p">(</span><span class="n">encoder_state</span><span class="p">,</span> <span class="n">dec_cell</span><span class="p">,</span> <span class="n">dec_embeddings</span><span class="p">,</span> <span class="n">start_of_sequence_id</span><span class="p">,</span> <span class="n">end_of_sequence_id</span><span class="p">,</span> <span class="n">maximum_length</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">decoding_scope</span><span class="p">,</span> <span class="n">output_fn</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">train_logits</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;jeej&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">train_logits</span><span class="p">,</span> <span class="n">inference_logits</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -12454,11 +12454,18 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 
 
 <div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>---
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-12-433ad6c44a92&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-17-ed41f89b0c76&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     39</span> DON<span class="ansi-red-fg">&#39;</span>T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 <span class="ansi-green-intense-fg ansi-bold">     40</span> &#34;&#34;&#34;
 <span class="ansi-green-fg">---&gt; 41</span><span class="ansi-red-fg"> </span>tests<span class="ansi-yellow-intense-fg ansi-bold">.</span>test_decoding_layer<span class="ansi-yellow-intense-fg ansi-bold">(</span>decoding_layer<span class="ansi-yellow-intense-fg ansi-bold">)</span>
@@ -12470,12 +12477,12 @@ les états-unis est parfois occupé en janvier , et il est parfois chaud en nove
 </span><span class="ansi-green-intense-fg ansi-bold">    148</span> 
 <span class="ansi-green-intense-fg ansi-bold">    149</span>         <span class="ansi-green-intense-fg ansi-bold">assert</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>train_output<span class="ansi-yellow-intense-fg ansi-bold">,</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Tensor<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-red-fg">\</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-12-433ad6c44a92&gt;</span> in <span class="ansi-cyan-fg">decoding_layer</span><span class="ansi-blue-fg">(dec_embed_input, dec_embeddings, encoder_state, vocab_size, sequence_length, rnn_size, num_layers, target_vocab_to_int, keep_prob)</span>
+<span class="ansi-green-fg">&lt;ipython-input-17-ed41f89b0c76&gt;</span> in <span class="ansi-cyan-fg">decoding_layer</span><span class="ansi-blue-fg">(dec_embed_input, dec_embeddings, encoder_state, vocab_size, sequence_length, rnn_size, num_layers, target_vocab_to_int, keep_prob)</span>
 <span class="ansi-green-intense-fg ansi-bold">     31</span> 
-<span class="ansi-green-intense-fg ansi-bold">     32</span> 
+<span class="ansi-green-intense-fg ansi-bold">     32</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;---&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">     </span>inference_logits <span class="ansi-yellow-intense-fg ansi-bold">=</span> decoding_layer_infer<span class="ansi-yellow-intense-fg ansi-bold">(</span>encoder_state<span class="ansi-yellow-intense-fg ansi-bold">,</span> dec_cell<span class="ansi-yellow-intense-fg ansi-bold">,</span> dec_embeddings<span class="ansi-yellow-intense-fg ansi-bold">,</span> start_of_sequence_id<span class="ansi-yellow-intense-fg ansi-bold">,</span> end_of_sequence_id<span class="ansi-yellow-intense-fg ansi-bold">,</span> maximum_length<span class="ansi-yellow-intense-fg ansi-bold">,</span> vocab_size<span class="ansi-yellow-intense-fg ansi-bold">,</span> decoding_scope<span class="ansi-yellow-intense-fg ansi-bold">,</span> output_fn<span class="ansi-yellow-intense-fg ansi-bold">,</span> keep_prob<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span> 
-<span class="ansi-green-intense-fg ansi-bold">     35</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> train_logits<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-green-intense-fg ansi-bold">None</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;jeej&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> train_logits<span class="ansi-yellow-intense-fg ansi-bold">,</span> inference_logits
 
 <span class="ansi-green-fg">&lt;ipython-input-11-a02d3a52de9f&gt;</span> in <span class="ansi-cyan-fg">decoding_layer_infer</span><span class="ansi-blue-fg">(encoder_state, dec_cell, dec_embeddings, start_of_sequence_id, end_of_sequence_id, maximum_length, vocab_size, decoding_scope, output_fn, keep_prob)</span>
 <span class="ansi-green-intense-fg ansi-bold">     20</span>         output_fn<span class="ansi-yellow-intense-fg ansi-bold">,</span> encoder_state<span class="ansi-yellow-intense-fg ansi-bold">,</span> dec_embeddings<span class="ansi-yellow-intense-fg ansi-bold">,</span> start_of_sequence_id<span class="ansi-yellow-intense-fg ansi-bold">,</span> end_of_sequence_id<span class="ansi-yellow-intense-fg ansi-bold">,</span>
