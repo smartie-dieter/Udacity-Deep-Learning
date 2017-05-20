@@ -11844,7 +11844,7 @@ Found celeba Data
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0xe9e8ddc828&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0xaa235bba8&gt;</pre>
 </div>
 
 </div>
@@ -12426,7 +12426,7 @@ JgUDAwMbzKRgYGBgg5kUDAwMbDCTgoGBgQ3/D1N3uai2RAKbAAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0xe9e8e90828&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0xaa240eba8&gt;</pre>
 </div>
 
 </div>
@@ -13679,11 +13679,10 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">leaky_relu</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">h1</span><span class="p">,</span> <span class="n">h1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
@@ -13693,7 +13692,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">discriminator</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -13703,26 +13702,37 @@ Default GPU Device: /gpu:0
 <span class="sd">    :param reuse: Boolean if the weights should be reused</span>
 <span class="sd">    :return: Tuple of (tensor output of the discriminator, tensor logits of the discriminator)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;___Discriminator___&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;images :&quot;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">images</span><span class="p">))</span>
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;discriminator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="n">reuse</span><span class="p">):</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="c1">#print(images)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
         
 
         
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="n">bn2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">bn2</span><span class="p">)</span>
-
         
+        <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">bn2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">bn3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bn3</span><span class="p">)</span>
+
+        <span class="n">x4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">bn3</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">bn4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  
+        <span class="nb">print</span><span class="p">(</span><span class="n">bn4</span><span class="p">)</span>
 
         <span class="c1"># Flatten it</span>
-        <span class="n">flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">bn2</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">128</span><span class="p">))</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">bn4</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">512</span><span class="p">))</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
         
         
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;out :&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;logits :&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">logits</span><span class="p">))</span>
         
         <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">logits</span>
     
@@ -13743,12 +13753,22 @@ Default GPU Device: /gpu:0
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
-Tensor(&#34;conv2d/BiasAdd:0&#34;, shape=(?, 14, 14, 64), dtype=float32)
-Tensor(&#34;batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 128), dtype=float32)
-Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
-Tensor(&#34;conv2d_3/BiasAdd:0&#34;, shape=(?, 14, 14, 64), dtype=float32)
-Tensor(&#34;batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 128), dtype=float32)
+<pre>___Discriminator___
+images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
+Tensor(&#34;conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
+Tensor(&#34;batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
+Tensor(&#34;batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
+out :Tensor(&#34;Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
+logits :Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
+___Discriminator___
+images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
+Tensor(&#34;conv2d_5/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
+Tensor(&#34;batch_normalization_4/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;batch_normalization_5/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
+Tensor(&#34;batch_normalization_6/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
+out :Tensor(&#34;Sigmoid_1:0&#34;, shape=(?, 1), dtype=float32)
+logits :Tensor(&#34;dense_2/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
 Tests Passed
 </pre>
 </div>
@@ -13770,10 +13790,15 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;__Generator__&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;output channel dim : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">out_channel_dim</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_&quot;</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create the generator network</span>
 <span class="sd">    :param z: Input z</span>
@@ -13781,36 +13806,43 @@ Tests Passed
 <span class="sd">    :param is_train: Boolean if generator is being used for training</span>
 <span class="sd">    :return: The tensor output of the generator</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="c1"># TODO: Implement Function</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;generator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
-        
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    reuse and is_train are interconnected. </span>
+<span class="sd">    They are opposite to each other. reuse = not is_train</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;generator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span> <span class="ow">not</span> <span class="n">is_train</span><span class="p">):</span>        
         <span class="c1"># First fully connected layer</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">256</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
         <span class="c1"># Reshape it to start the convolutional stack</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">is_train</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">is_train</span><span class="p">)</span>
+
         <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
         <span class="c1"># 4x4x512 now</span>
         
         
         <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d_transpose</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">is_train</span><span class="p">)</span>
+ 
         <span class="nb">print</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
         <span class="c1"># 16x16x128 now</span>
         
         <span class="c1"># Output layer</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d_transpose</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="c1"># 32x32x3 now</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">out_channel_dim</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
+        <span class="c1">#print(&quot;---&quot;)</span>
+        <span class="c1">#print(out_channel_dim)</span>
+        <span class="c1">#print(logits)</span>
         
         <span class="n">out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
-    
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;out: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">out</span>
 
-
+   
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">DON&#39;T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -13827,41 +13859,26 @@ Tests Passed
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
+<pre>__Generator__
+output channel dim : 5
+z : Tensor(&#34;Placeholder:0&#34;, shape=(?, 100), dtype=float32)
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
+Tensor(&#34;Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
 Tensor(&#34;batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
 Tensor(&#34;batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
----
-5
-Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float32)
+out: Tensor(&#34;Tanh:0&#34;, shape=(?, 28, 28, 5), dtype=float32)
+__Generator__
+output channel dim : 5
+z : Tensor(&#34;Placeholder:0&#34;, shape=(?, 100), dtype=float32)
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+Tensor(&#34;dense_2/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
+Tensor(&#34;Reshape_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
+Tensor(&#34;batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
+Tensor(&#34;batch_normalization_4/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+out: Tensor(&#34;Tanh_1:0&#34;, shape=(?, 28, 28, 5), dtype=float32)
+Tests Passed
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-8-689f7ca0dad7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span> DON<span class="ansi-red-fg">&#39;</span>T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
-<span class="ansi-green-intense-fg ansi-bold">     41</span> &#34;&#34;&#34;
-<span class="ansi-green-fg">---&gt; 42</span><span class="ansi-red-fg"> </span>tests<span class="ansi-yellow-intense-fg ansi-bold">.</span>test_generator<span class="ansi-yellow-intense-fg ansi-bold">(</span>generator<span class="ansi-yellow-intense-fg ansi-bold">,</span> tf<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-fg">D:\Projects\2017-01-27-Neural_Networks\Project 5\face_generation\problem_unittests.py</span> in <span class="ansi-cyan-fg">func_wrapper</span><span class="ansi-blue-fg">(*args)</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> func_wrapper<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     11</span>         <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg">             </span>result <span class="ansi-yellow-intense-fg ansi-bold">=</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     13</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;Tests Passed&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> result
-
-<span class="ansi-green-fg">D:\Projects\2017-01-27-Neural_Networks\Project 5\face_generation\problem_unittests.py</span> in <span class="ansi-cyan-fg">test_generator</span><span class="ansi-blue-fg">(generator, tf_module)</span>
-<span class="ansi-green-intense-fg ansi-bold">    104</span>             <span class="ansi-blue-intense-fg ansi-bold">&#39;tf.variable_scope not called in Generator Training(reuse=false)&#39;</span>
-<span class="ansi-green-intense-fg ansi-bold">    105</span>         <span class="ansi-green-intense-fg ansi-bold">assert</span> mock_variable_scope<span class="ansi-yellow-intense-fg ansi-bold">.</span>call_args <span class="ansi-yellow-intense-fg ansi-bold">==</span> mock<span class="ansi-yellow-intense-fg ansi-bold">.</span>call<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;generator&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> reuse<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-red-fg"> </span><span class="ansi-red-fg">\</span>
-<span class="ansi-green-fg">--&gt; 106</span><span class="ansi-red-fg">             </span><span class="ansi-blue-intense-fg ansi-bold">&#39;tf.variable_scope called with wrong arguments in Generator Training(reuse=false)&#39;</span>
-<span class="ansi-green-intense-fg ansi-bold">    107</span> 
-<span class="ansi-green-intense-fg ansi-bold">    108</span>         mock_variable_scope<span class="ansi-yellow-intense-fg ansi-bold">.</span>reset_mock<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-red-fg">AssertionError</span>: tf.variable_scope called with wrong arguments in Generator Training(reuse=false)</pre>
 </div>
 </div>
 
@@ -13885,6 +13902,19 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
@@ -13898,13 +13928,23 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: Implement Function</span>
-    <span class="n">g_model</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">input_real</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">input_real</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">input_z</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">out_channel_dim</span><span class="p">)</span>
+    
+    <span class="n">g_model</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------&quot;</span><span class="p">)</span>
     <span class="n">d_model_real</span><span class="p">,</span> <span class="n">d_logits_real</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">input_real</span><span class="p">)</span>
     <span class="n">d_model_fake</span><span class="p">,</span> <span class="n">d_logits_fake</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">g_model</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">d_loss_real</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_real</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d_model_real</span><span class="p">)))</span>
-    <span class="n">d_loss_fake</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">d_model_fake</span><span class="p">)))</span>
-    <span class="n">g_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d_model_fake</span><span class="p">)))</span>
+    
+    <span class="n">d_loss_real</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_real</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d_logits_real</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)))</span>
+    <span class="n">d_loss_fake</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">d_logits_real</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)))</span>
+   
+
+    <span class="c1">#d_loss_real = tf.reduce_mean( tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_real, labels=tf.ones_like(d_model_real)))</span>
+    <span class="c1">#d_loss_fake = tf.reduce_mean( tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_fake, labels=tf.zeros_like(d_model_fake)))</span>
+    <span class="n">g_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d_logits_fake</span><span class="p">)))</span>
 
     <span class="n">d_loss</span> <span class="o">=</span> <span class="n">d_loss_real</span> <span class="o">+</span> <span class="n">d_loss_fake</span>
 
@@ -13926,121 +13966,38 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-9-8530a1d64bda&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">     25</span> DON<span class="ansi-red-fg">&#39;</span>T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
-<span class="ansi-green-intense-fg ansi-bold">     26</span> &#34;&#34;&#34;
-<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg"> </span>tests<span class="ansi-yellow-intense-fg ansi-bold">.</span>test_model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>model_loss<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-fg">D:\Projects\2017-01-27-Neural_Networks\Project 5\face_generation\problem_unittests.py</span> in <span class="ansi-cyan-fg">func_wrapper</span><span class="ansi-blue-fg">(*args)</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> func_wrapper<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     11</span>         <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg">             </span>result <span class="ansi-yellow-intense-fg ansi-bold">=</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     13</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;Tests Passed&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>         <span class="ansi-green-intense-fg ansi-bold">return</span> result
-
-<span class="ansi-green-fg">D:\Projects\2017-01-27-Neural_Networks\Project 5\face_generation\problem_unittests.py</span> in <span class="ansi-cyan-fg">test_model_loss</span><span class="ansi-blue-fg">(model_loss)</span>
-<span class="ansi-green-intense-fg ansi-bold">    121</span>     input_z <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>placeholder<span class="ansi-yellow-intense-fg ansi-bold">(</span>tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>float32<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">100</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    122</span> 
-<span class="ansi-green-fg">--&gt; 123</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_real<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    124</span> 
-<span class="ansi-green-intense-fg ansi-bold">    125</span>     _assert_tensor_shape<span class="ansi-yellow-intense-fg ansi-bold">(</span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;Discriminator Loss&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-9-8530a1d64bda&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span> 
-<span class="ansi-green-intense-fg ansi-bold">     10</span>     <span class="ansi-red-intense-fg ansi-bold"># TODO: Implement Function</span>
-<span class="ansi-green-fg">---&gt; 11</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_real<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span>     d_model_real<span class="ansi-yellow-intense-fg ansi-bold">,</span> d_logits_real <span class="ansi-yellow-intense-fg ansi-bold">=</span> discriminator<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_real<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     13</span>     d_model_fake<span class="ansi-yellow-intense-fg ansi-bold">,</span> d_logits_fake <span class="ansi-yellow-intense-fg ansi-bold">=</span> discriminator<span class="ansi-yellow-intense-fg ansi-bold">(</span>g_model<span class="ansi-yellow-intense-fg ansi-bold">,</span> reuse<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-8-689f7ca0dad7&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
-<span class="ansi-green-intense-fg ansi-bold">     11</span> 
-<span class="ansi-green-intense-fg ansi-bold">     12</span>         <span class="ansi-red-intense-fg ansi-bold"># First fully connected layer</span>
-<span class="ansi-green-fg">---&gt; 13</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>dense<span class="ansi-yellow-intense-fg ansi-bold">(</span>z<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">*</span><span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">*</span><span class="ansi-cyan-intense-fg ansi-bold">256</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     15</span>         <span class="ansi-red-intense-fg ansi-bold"># Reshape it to start the convolutional stack</span>
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\core.py</span> in <span class="ansi-cyan-fg">dense</span><span class="ansi-blue-fg">(inputs, units, activation, use_bias, kernel_initializer, bias_initializer, kernel_regularizer, bias_regularizer, activity_regularizer, trainable, name, reuse)</span>
-<span class="ansi-green-intense-fg ansi-bold">    214</span>                 _scope<span class="ansi-yellow-intense-fg ansi-bold">=</span>name<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    215</span>                 _reuse=reuse)
-<span class="ansi-green-fg">--&gt; 216</span><span class="ansi-red-fg">   </span><span class="ansi-green-intense-fg ansi-bold">return</span> layer<span class="ansi-yellow-intense-fg ansi-bold">.</span>apply<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    217</span> 
-<span class="ansi-green-intense-fg ansi-bold">    218</span> 
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">apply</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    301</span>       Output tensor<span class="ansi-yellow-intense-fg ansi-bold">(</span>s<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>
-<span class="ansi-green-intense-fg ansi-bold">    302</span>     &#34;&#34;&#34;
-<span class="ansi-green-fg">--&gt; 303</span><span class="ansi-red-fg">     </span><span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>__call__<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    304</span> 
-<span class="ansi-green-intense-fg ansi-bold">    305</span> 
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    267</span>           input_shapes <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span>x<span class="ansi-yellow-intense-fg ansi-bold">.</span>get_shape<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">for</span> x <span class="ansi-green-intense-fg ansi-bold">in</span> input_list<span class="ansi-yellow-intense-fg ansi-bold">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    268</span>           <span class="ansi-green-intense-fg ansi-bold">if</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_shapes<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">==</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">--&gt; 269</span><span class="ansi-red-fg">             </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>build<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_shapes<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    270</span>           <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    271</span>             self<span class="ansi-yellow-intense-fg ansi-bold">.</span>build<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_shapes<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\core.py</span> in <span class="ansi-cyan-fg">build</span><span class="ansi-blue-fg">(self, input_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    121</span>                                   regularizer<span class="ansi-yellow-intense-fg ansi-bold">=</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>kernel_regularizer<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    122</span>                                   dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 123</span><span class="ansi-red-fg">                                   trainable=True)
-</span><span class="ansi-green-intense-fg ansi-bold">    124</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>use_bias<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    125</span>       self.bias = vs.get_variable(&#39;bias&#39;,
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(name, shape, dtype, initializer, regularizer, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    986</span>       collections<span class="ansi-yellow-intense-fg ansi-bold">=</span>collections<span class="ansi-yellow-intense-fg ansi-bold">,</span> caching_device<span class="ansi-yellow-intense-fg ansi-bold">=</span>caching_device<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    987</span>       partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span> validate_shape<span class="ansi-yellow-intense-fg ansi-bold">=</span>validate_shape<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 988</span><span class="ansi-red-fg">       custom_getter=custom_getter)
-</span><span class="ansi-green-intense-fg ansi-bold">    989</span> get_variable_or_local_docstring = (
-<span class="ansi-green-intense-fg ansi-bold">    990</span>     &#34;&#34;&#34;%s
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(self, var_store, name, shape, dtype, initializer, regularizer, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    888</span>           collections<span class="ansi-yellow-intense-fg ansi-bold">=</span>collections<span class="ansi-yellow-intense-fg ansi-bold">,</span> caching_device<span class="ansi-yellow-intense-fg ansi-bold">=</span>caching_device<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    889</span>           partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span> validate_shape<span class="ansi-yellow-intense-fg ansi-bold">=</span>validate_shape<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 890</span><span class="ansi-red-fg">           custom_getter=custom_getter)
-</span><span class="ansi-green-intense-fg ansi-bold">    891</span> 
-<span class="ansi-green-intense-fg ansi-bold">    892</span>   def _get_partitioned_variable(self,
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, reuse, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    339</span>           reuse<span class="ansi-yellow-intense-fg ansi-bold">=</span>reuse<span class="ansi-yellow-intense-fg ansi-bold">,</span> trainable<span class="ansi-yellow-intense-fg ansi-bold">=</span>trainable<span class="ansi-yellow-intense-fg ansi-bold">,</span> collections<span class="ansi-yellow-intense-fg ansi-bold">=</span>collections<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    340</span>           caching_device<span class="ansi-yellow-intense-fg ansi-bold">=</span>caching_device<span class="ansi-yellow-intense-fg ansi-bold">,</span> partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 341</span><span class="ansi-red-fg">           validate_shape=validate_shape)
-</span><span class="ansi-green-intense-fg ansi-bold">    342</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    343</span>       return _true_getter(
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">variable_getter</span><span class="ansi-blue-fg">(getter, name, shape, dtype, initializer, regularizer, trainable, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    256</span>           name<span class="ansi-yellow-intense-fg ansi-bold">,</span> shape<span class="ansi-yellow-intense-fg ansi-bold">,</span> initializer<span class="ansi-yellow-intense-fg ansi-bold">=</span>initializer<span class="ansi-yellow-intense-fg ansi-bold">,</span> regularizer<span class="ansi-yellow-intense-fg ansi-bold">=</span>regularizer<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    257</span>           dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> trainable<span class="ansi-yellow-intense-fg ansi-bold">=</span>trainable<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 258</span><span class="ansi-red-fg">           variable_getter=functools.partial(getter, **kwargs))
-</span><span class="ansi-green-intense-fg ansi-bold">    259</span> 
-<span class="ansi-green-intense-fg ansi-bold">    260</span>     <span class="ansi-red-intense-fg ansi-bold"># Build (if necessary) and call the layer, inside a variable scope.</span>
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">_add_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, trainable, variable_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    206</span>                                initializer<span class="ansi-yellow-intense-fg ansi-bold">=</span>initializer<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    207</span>                                dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 208</span><span class="ansi-red-fg">                                trainable=trainable and self.trainable)
-</span><span class="ansi-green-intense-fg ansi-bold">    209</span>     <span class="ansi-red-intense-fg ansi-bold"># TODO(sguada) fix name = variable.op.name</span>
-<span class="ansi-green-intense-fg ansi-bold">    210</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> variable <span class="ansi-green-intense-fg ansi-bold">in</span> existing_variables<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">_true_getter</span><span class="ansi-blue-fg">(name, shape, dtype, initializer, regularizer, reuse, trainable, collections, caching_device, partitioner, validate_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    331</span>           initializer<span class="ansi-yellow-intense-fg ansi-bold">=</span>initializer<span class="ansi-yellow-intense-fg ansi-bold">,</span> regularizer<span class="ansi-yellow-intense-fg ansi-bold">=</span>regularizer<span class="ansi-yellow-intense-fg ansi-bold">,</span> reuse<span class="ansi-yellow-intense-fg ansi-bold">=</span>reuse<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    332</span>           trainable<span class="ansi-yellow-intense-fg ansi-bold">=</span>trainable<span class="ansi-yellow-intense-fg ansi-bold">,</span> collections<span class="ansi-yellow-intense-fg ansi-bold">=</span>collections<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 333</span><span class="ansi-red-fg">           caching_device=caching_device, validate_shape=validate_shape)
-</span><span class="ansi-green-intense-fg ansi-bold">    334</span> 
-<span class="ansi-green-intense-fg ansi-bold">    335</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> custom_getter <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">not</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">_get_single_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, partition_info, reuse, trainable, collections, caching_device, validate_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    655</span>       raise ValueError(&#34;Variable %s does not exist, or was not created with &#34;
-<span class="ansi-green-intense-fg ansi-bold">    656</span>                        <span class="ansi-blue-intense-fg ansi-bold">&#34;tf.get_variable(). Did you mean to set reuse=None in &#34;</span>
-<span class="ansi-green-fg">--&gt; 657</span><span class="ansi-red-fg">                        &#34;VarScope?&#34; % name)
-</span><span class="ansi-green-intense-fg ansi-bold">    658</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> shape<span class="ansi-yellow-intense-fg ansi-bold">.</span>is_fully_defined<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">and</span> <span class="ansi-green-intense-fg ansi-bold">not</span> initializing_from_value<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    659</span>       raise ValueError(&#34;Shape of a new variable (%s) must be fully defined, &#34;
-
-<span class="ansi-red-fg">ValueError</span>: Variable generator/dense/kernel does not exist, or was not created with tf.get_variable(). Did you mean to set reuse=None in VarScope?</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
+Tensor(&#34;Placeholder_1:0&#34;, shape=(?, 100), dtype=float32)
+4
+__Generator__
+output channel dim : 4
+z : Tensor(&#34;Placeholder_1:0&#34;, shape=(?, 100), dtype=float32)
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
+Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
+Tensor(&#34;generator/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
+Tensor(&#34;generator/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+out: Tensor(&#34;generator/Tanh:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
+------------------------
+___Discriminator___
+images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
+Tensor(&#34;discriminator/conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
+Tensor(&#34;discriminator/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;discriminator/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
+Tensor(&#34;discriminator/batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
+out :Tensor(&#34;discriminator/Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
+logits :Tensor(&#34;discriminator/dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
+___Discriminator___
+images :Tensor(&#34;generator/Tanh:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
+Tensor(&#34;discriminator_1/conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
+Tensor(&#34;discriminator_1/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;discriminator_1/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
+Tensor(&#34;discriminator_1/batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
+out :Tensor(&#34;discriminator_1/Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
+logits :Tensor(&#34;discriminator_1/dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
+Tests Passed
+</pre>
 </div>
 </div>
 
@@ -14079,8 +14036,9 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
     <span class="n">g_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">t_vars</span> <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;generator&#39;</span><span class="p">)]</span>
 
     <span class="c1"># Optimize</span>
-    <span class="n">d_train_opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">d_vars</span><span class="p">)</span>
-    <span class="n">g_train_opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">g_loss</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">g_vars</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">UPDATE_OPS</span><span class="p">)):</span>
+        <span class="n">d_train_opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">d_vars</span><span class="p">)</span>
+        <span class="n">g_train_opt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">g_loss</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span><span class="n">g_vars</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">d_train_opt</span><span class="p">,</span> <span class="n">g_train_opt</span>
 
@@ -14174,6 +14132,21 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Tensor("Placeholder:0", shape=(?, 28, 28, 4), dtype=float32)
+Tensor("Placeholder_1:0", shape=(?, 100), dtype=float32)
+4</p>
+<p>Tensor("real_input_images:0", shape=(?, 28, 28, 1), dtype=int32)
+Tensor("input_z:0", shape=(?, 100), dtype=int32)
+100</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
@@ -14192,25 +14165,39 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 <span class="sd">    : param data_image_mode: The image mode to use for images (&quot;RGB&quot; or &quot;L&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Build Model</span>
-    
+    <span class="nb">print</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">z_dim</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">beta1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_batches</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data_shape</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data_image_mode</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;____________________&quot;</span><span class="p">)</span>
     <span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
     
-    
-    <span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">model_inputs</span><span class="p">(</span><span class="n">data_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">z_dim</span><span class="p">)</span>
-    <span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span> <span class="o">=</span> <span class="n">model_loss</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">)</span> <span class="c1">#????</span>
-    <span class="n">d_train_opt</span><span class="p">,</span> <span class="n">g_train_opt</span> <span class="o">=</span> <span class="n">model_opt</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">)</span>
-
-    
-
-
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok1&quot;</span><span class="p">)</span>
         
+    <span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">model_inputs</span><span class="p">(</span><span class="n">data_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">z_dim</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok2&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">input_z</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">real_input_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;________________&quot;</span><span class="p">)</span>
+    <span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span> <span class="o">=</span> <span class="n">model_loss</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">real_input_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#????</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok3&quot;</span><span class="p">)</span>
+    <span class="n">d_train_opt</span><span class="p">,</span> <span class="n">g_train_opt</span> <span class="o">=</span> <span class="n">model_opt</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok4&quot;</span><span class="p">)</span>
+    
+
+    
     <span class="n">steps</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
         <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">epoch_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">batch_images</span> <span class="ow">in</span> <span class="n">get_batches</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
                 <span class="n">steps</span> <span class="o">+=</span> <span class="mi">1</span>
-                
+                <span class="n">batch_images</span> <span class="o">=</span> <span class="n">batch_images</span><span class="o">*</span><span class="mi">2</span>
                 
                 <span class="c1"># Sample random noise for G</span>
                 <span class="n">batch_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">))</span>
@@ -14250,6 +14237,18 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Tensor("Placeholder:0", shape=(?, 28, 28, 4), dtype=float32)
+Tensor("Placeholder_1:0", shape=(?, 100), dtype=float32)
+4</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="MNIST">MNIST<a class="anchor-link" href="#MNIST">&#182;</a></h3><p>Test your GANs architecture on MNIST.  After 2 epochs, the GANs should be able to generate images that look like handwritten digits.  Make sure the loss of the generator is lower than the loss of the discriminator or close to 0.</p>
 
 </div>
@@ -14260,10 +14259,10 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="n">z_dim</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0002</span>
-<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -14286,6 +14285,36 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 
 
 <div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+32
+100
+0.0002
+0.2
+&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x0000000AABDB9C88&gt;&gt;
+(60000, 28, 28, 1)
+L
+____________________
+ok1
+ok2
+Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 1), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+1
+________________
+Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 1), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+1
+__Generator__
+output channel dim : 1
+z : Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=int32)
+Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -14295,29 +14324,29 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 <span class="ansi-green-fg">-&gt; 3613</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">yield</span> default
 <span class="ansi-green-intense-fg ansi-bold">   3614</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-13-c7dcb5a55f02&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-de23de5204ab&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
 </span>
-<span class="ansi-green-fg">&lt;ipython-input-12-72736d5649d3&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">     18</span>     real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> learning_rate <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_inputs<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> data_shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> data_shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> z_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> z_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span>     d_train_opt<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_train_opt <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_opt<span class="ansi-yellow-intense-fg ansi-bold">(</span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> learning_rate<span class="ansi-yellow-intense-fg ansi-bold">,</span> beta1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-12-052e5e51a3a6&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;________________&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> real_input_images<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;ok3&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-9-8530a1d64bda&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span>     <span class="ansi-red-intense-fg ansi-bold"># TODO: Implement Function</span>
-<span class="ansi-green-fg">---&gt; 11</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_real<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span>     d_model_real<span class="ansi-yellow-intense-fg ansi-bold">,</span> d_logits_real <span class="ansi-yellow-intense-fg ansi-bold">=</span> discriminator<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_real<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-9-3ed5522ca5c5&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> 
+<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     16</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;------------------------&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-8-689f7ca0dad7&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span>         <span class="ansi-red-intense-fg ansi-bold"># First fully connected layer</span>
-<span class="ansi-green-fg">---&gt; 13</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>dense<span class="ansi-yellow-intense-fg ansi-bold">(</span>z<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">*</span><span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">*</span><span class="ansi-cyan-intense-fg ansi-bold">256</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-7-70de0e547b2e&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span> 
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\core.py</span> in <span class="ansi-cyan-fg">dense</span><span class="ansi-blue-fg">(inputs, units, activation, use_bias, kernel_initializer, bias_initializer, kernel_regularizer, bias_regularizer, activity_regularizer, trainable, name, reuse)</span>
-<span class="ansi-green-intense-fg ansi-bold">    215</span>                 _reuse=reuse)
-<span class="ansi-green-fg">--&gt; 216</span><span class="ansi-red-fg">   </span><span class="ansi-green-intense-fg ansi-bold">return</span> layer<span class="ansi-yellow-intense-fg ansi-bold">.</span>apply<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    217</span> 
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">batch_normalization</span><span class="ansi-blue-fg">(inputs, axis, momentum, epsilon, center, scale, beta_initializer, gamma_initializer, moving_mean_initializer, moving_variance_initializer, beta_regularizer, gamma_regularizer, training, trainable, name, reuse)</span>
+<span class="ansi-green-intense-fg ansi-bold">    316</span>       _scope=name)
+<span class="ansi-green-fg">--&gt; 317</span><span class="ansi-red-fg">   </span><span class="ansi-green-intense-fg ansi-bold">return</span> layer<span class="ansi-yellow-intense-fg ansi-bold">.</span>apply<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> training<span class="ansi-yellow-intense-fg ansi-bold">=</span>training<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    318</span> 
 
 <span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">apply</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    302</span>     &#34;&#34;&#34;
@@ -14325,56 +14354,51 @@ Tensor(&#34;conv2d_transpose_2/BiasAdd:0&#34;, shape=(?, 28, 28, 5), dtype=float
 <span class="ansi-green-intense-fg ansi-bold">    304</span> 
 
 <span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    268</span>           <span class="ansi-green-intense-fg ansi-bold">if</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_shapes<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">==</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">--&gt; 269</span><span class="ansi-red-fg">             </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>build<span class="ansi-yellow-intense-fg ansi-bold">(</span>input_shapes<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    270</span>           <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    272</span>           self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_built <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">True</span>
+<span class="ansi-green-fg">--&gt; 273</span><span class="ansi-red-fg">         </span>outputs <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>call<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    274</span> 
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\core.py</span> in <span class="ansi-cyan-fg">build</span><span class="ansi-blue-fg">(self, input_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    122</span>                                   dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 123</span><span class="ansi-red-fg">                                   trainable=True)
-</span><span class="ansi-green-intense-fg ansi-bold">    124</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>use_bias<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">call</span><span class="ansi-blue-fg">(self, inputs, training)</span>
+<span class="ansi-green-intense-fg ansi-bold">    192</span>         mean_update = moving_averages.assign_moving_average(
+<span class="ansi-green-fg">--&gt; 193</span><span class="ansi-red-fg">             self.moving_mean, mean, self.momentum, zero_debias=False)
+</span><span class="ansi-green-intense-fg ansi-bold">    194</span>         variance_update = moving_averages.assign_moving_average(
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(name, shape, dtype, initializer, regularizer, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    987</span>       partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span> validate_shape<span class="ansi-yellow-intense-fg ansi-bold">=</span>validate_shape<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 988</span><span class="ansi-red-fg">       custom_getter=custom_getter)
-</span><span class="ansi-green-intense-fg ansi-bold">    989</span> get_variable_or_local_docstring = (
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\training\moving_averages.py</span> in <span class="ansi-cyan-fg">assign_moving_average</span><span class="ansi-blue-fg">(variable, value, decay, zero_debias, name)</span>
+<span class="ansi-green-intense-fg ansi-bold">     71</span>       <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">---&gt; 72</span><span class="ansi-red-fg">         </span>update_delta <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>variable <span class="ansi-yellow-intense-fg ansi-bold">-</span> value<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> decay
+<span class="ansi-green-intense-fg ansi-bold">     73</span>       <span class="ansi-green-intense-fg ansi-bold">return</span> state_ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>assign_sub<span class="ansi-yellow-intense-fg ansi-bold">(</span>variable<span class="ansi-yellow-intense-fg ansi-bold">,</span> update_delta<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>scope<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(self, var_store, name, shape, dtype, initializer, regularizer, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    889</span>           partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span> validate_shape<span class="ansi-yellow-intense-fg ansi-bold">=</span>validate_shape<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 890</span><span class="ansi-red-fg">           custom_getter=custom_getter)
-</span><span class="ansi-green-intense-fg ansi-bold">    891</span> 
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variables.py</span> in <span class="ansi-cyan-fg">_run_op</span><span class="ansi-blue-fg">(a, *args)</span>
+<span class="ansi-green-intense-fg ansi-bold">    676</span>       <span class="ansi-red-intense-fg ansi-bold"># pylint: disable=protected-access</span>
+<span class="ansi-green-fg">--&gt; 677</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">return</span> getattr<span class="ansi-yellow-intense-fg ansi-bold">(</span>ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>Tensor<span class="ansi-yellow-intense-fg ansi-bold">,</span> operator<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">.</span>_AsTensor<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    678</span>     <span class="ansi-red-intense-fg ansi-bold"># Propagate __doc__ to wrapper</span>
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">get_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, reuse, trainable, collections, caching_device, partitioner, validate_shape, custom_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    340</span>           caching_device<span class="ansi-yellow-intense-fg ansi-bold">=</span>caching_device<span class="ansi-yellow-intense-fg ansi-bold">,</span> partitioner<span class="ansi-yellow-intense-fg ansi-bold">=</span>partitioner<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 341</span><span class="ansi-red-fg">           validate_shape=validate_shape)
-</span><span class="ansi-green-intense-fg ansi-bold">    342</span>     <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\math_ops.py</span> in <span class="ansi-cyan-fg">binary_op_wrapper</span><span class="ansi-blue-fg">(x, y)</span>
+<span class="ansi-green-intense-fg ansi-bold">    792</span>       <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>y<span class="ansi-yellow-intense-fg ansi-bold">,</span> sparse_tensor<span class="ansi-yellow-intense-fg ansi-bold">.</span>SparseTensor<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">--&gt; 793</span><span class="ansi-red-fg">         </span>y <span class="ansi-yellow-intense-fg ansi-bold">=</span> ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>convert_to_tensor<span class="ansi-yellow-intense-fg ansi-bold">(</span>y<span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>x<span class="ansi-yellow-intense-fg ansi-bold">.</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">.</span>base_dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#34;y&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    794</span>       <span class="ansi-green-intense-fg ansi-bold">return</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span>x<span class="ansi-yellow-intense-fg ansi-bold">,</span> y<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>name<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">variable_getter</span><span class="ansi-blue-fg">(getter, name, shape, dtype, initializer, regularizer, trainable, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    257</span>           dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> trainable<span class="ansi-yellow-intense-fg ansi-bold">=</span>trainable<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 258</span><span class="ansi-red-fg">           variable_getter=functools.partial(getter, **kwargs))
-</span><span class="ansi-green-intense-fg ansi-bold">    259</span> 
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">convert_to_tensor</span><span class="ansi-blue-fg">(value, dtype, name, preferred_dtype)</span>
+<span class="ansi-green-intense-fg ansi-bold">    636</span>       preferred_dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>preferred_dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
+<span class="ansi-green-fg">--&gt; 637</span><span class="ansi-red-fg">       as_ref=False)
+</span><span class="ansi-green-intense-fg ansi-bold">    638</span> 
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">_add_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, trainable, variable_getter)</span>
-<span class="ansi-green-intense-fg ansi-bold">    207</span>                                dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 208</span><span class="ansi-red-fg">                                trainable=trainable and self.trainable)
-</span><span class="ansi-green-intense-fg ansi-bold">    209</span>     <span class="ansi-red-intense-fg ansi-bold"># TODO(sguada) fix name = variable.op.name</span>
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">internal_convert_to_tensor</span><span class="ansi-blue-fg">(value, dtype, name, as_ref, preferred_dtype)</span>
+<span class="ansi-green-intense-fg ansi-bold">    701</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> ret <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">--&gt; 702</span><span class="ansi-red-fg">           </span>ret <span class="ansi-yellow-intense-fg ansi-bold">=</span> conversion_func<span class="ansi-yellow-intense-fg ansi-bold">(</span>value<span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>name<span class="ansi-yellow-intense-fg ansi-bold">,</span> as_ref<span class="ansi-yellow-intense-fg ansi-bold">=</span>as_ref<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    703</span> 
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">_true_getter</span><span class="ansi-blue-fg">(name, shape, dtype, initializer, regularizer, reuse, trainable, collections, caching_device, partitioner, validate_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    332</span>           trainable<span class="ansi-yellow-intense-fg ansi-bold">=</span>trainable<span class="ansi-yellow-intense-fg ansi-bold">,</span> collections<span class="ansi-yellow-intense-fg ansi-bold">=</span>collections<span class="ansi-yellow-intense-fg ansi-bold">,</span>
-<span class="ansi-green-fg">--&gt; 333</span><span class="ansi-red-fg">           caching_device=caching_device, validate_shape=validate_shape)
-</span><span class="ansi-green-intense-fg ansi-bold">    334</span> 
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">_TensorTensorConversionFunction</span><span class="ansi-blue-fg">(t, dtype, name, as_ref)</span>
+<span class="ansi-green-intense-fg ansi-bold">    574</span>         <span class="ansi-blue-intense-fg ansi-bold">&#34;Tensor conversion requested dtype %s for Tensor with dtype %s: %r&#34;</span>
+<span class="ansi-green-fg">--&gt; 575</span><span class="ansi-red-fg">         % (dtype.name, t.dtype.name, str(t)))
+</span><span class="ansi-green-intense-fg ansi-bold">    576</span>   <span class="ansi-green-intense-fg ansi-bold">return</span> t
 
-<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variable_scope.py</span> in <span class="ansi-cyan-fg">_get_single_variable</span><span class="ansi-blue-fg">(self, name, shape, dtype, initializer, regularizer, partition_info, reuse, trainable, collections, caching_device, validate_shape)</span>
-<span class="ansi-green-intense-fg ansi-bold">    656</span>                        <span class="ansi-blue-intense-fg ansi-bold">&#34;tf.get_variable(). Did you mean to set reuse=None in &#34;</span>
-<span class="ansi-green-fg">--&gt; 657</span><span class="ansi-red-fg">                        &#34;VarScope?&#34; % name)
-</span><span class="ansi-green-intense-fg ansi-bold">    658</span>     <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> shape<span class="ansi-yellow-intense-fg ansi-bold">.</span>is_fully_defined<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">and</span> <span class="ansi-green-intense-fg ansi-bold">not</span> initializing_from_value<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-
-<span class="ansi-red-fg">ValueError</span>: Variable generator/dense/kernel does not exist, or was not created with tf.get_variable(). Did you mean to set reuse=None in VarScope?
+<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(256,), dtype=int32)&#39;
 
 During handling of the above exception, another exception occurred:
 
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-13-c7dcb5a55f02&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-de23de5204ab&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
@@ -14413,7 +14437,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
@@ -14435,6 +14459,150 @@ During handling of the above exception, another exception occurred:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+128
+100
+0.0002
+0.5
+&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x0000000AFED73CC0&gt;&gt;
+(202599, 28, 28, 3)
+RGB
+____________________
+ok1
+ok2
+Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 3), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+3
+________________
+Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 3), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+3
+__Generator__
+output channel dim : 3
+z : Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=int32)
+Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">get_controller</span><span class="ansi-blue-fg">(self, default)</span>
+<span class="ansi-green-intense-fg ansi-bold">   3612</span>       self<span class="ansi-yellow-intense-fg ansi-bold">.</span>stack<span class="ansi-yellow-intense-fg ansi-bold">.</span>append<span class="ansi-yellow-intense-fg ansi-bold">(</span>default<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">-&gt; 3613</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">yield</span> default
+<span class="ansi-green-intense-fg ansi-bold">   3614</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-14-19a63a32d845&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
+</span>
+<span class="ansi-green-fg">&lt;ipython-input-12-052e5e51a3a6&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;________________&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> real_input_images<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;ok3&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-9-3ed5522ca5c5&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> 
+<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     16</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;------------------------&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-7-70de0e547b2e&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">batch_normalization</span><span class="ansi-blue-fg">(inputs, axis, momentum, epsilon, center, scale, beta_initializer, gamma_initializer, moving_mean_initializer, moving_variance_initializer, beta_regularizer, gamma_regularizer, training, trainable, name, reuse)</span>
+<span class="ansi-green-intense-fg ansi-bold">    316</span>       _scope=name)
+<span class="ansi-green-fg">--&gt; 317</span><span class="ansi-red-fg">   </span><span class="ansi-green-intense-fg ansi-bold">return</span> layer<span class="ansi-yellow-intense-fg ansi-bold">.</span>apply<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> training<span class="ansi-yellow-intense-fg ansi-bold">=</span>training<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    318</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">apply</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    302</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">--&gt; 303</span><span class="ansi-red-fg">     </span><span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>__call__<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    304</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\base.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, inputs, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    272</span>           self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_built <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-green-intense-fg ansi-bold">True</span>
+<span class="ansi-green-fg">--&gt; 273</span><span class="ansi-red-fg">         </span>outputs <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>call<span class="ansi-yellow-intense-fg ansi-bold">(</span>inputs<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">**</span>kwargs<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    274</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">call</span><span class="ansi-blue-fg">(self, inputs, training)</span>
+<span class="ansi-green-intense-fg ansi-bold">    192</span>         mean_update = moving_averages.assign_moving_average(
+<span class="ansi-green-fg">--&gt; 193</span><span class="ansi-red-fg">             self.moving_mean, mean, self.momentum, zero_debias=False)
+</span><span class="ansi-green-intense-fg ansi-bold">    194</span>         variance_update = moving_averages.assign_moving_average(
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\training\moving_averages.py</span> in <span class="ansi-cyan-fg">assign_moving_average</span><span class="ansi-blue-fg">(variable, value, decay, zero_debias, name)</span>
+<span class="ansi-green-intense-fg ansi-bold">     71</span>       <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">---&gt; 72</span><span class="ansi-red-fg">         </span>update_delta <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>variable <span class="ansi-yellow-intense-fg ansi-bold">-</span> value<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span> decay
+<span class="ansi-green-intense-fg ansi-bold">     73</span>       <span class="ansi-green-intense-fg ansi-bold">return</span> state_ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>assign_sub<span class="ansi-yellow-intense-fg ansi-bold">(</span>variable<span class="ansi-yellow-intense-fg ansi-bold">,</span> update_delta<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>scope<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\variables.py</span> in <span class="ansi-cyan-fg">_run_op</span><span class="ansi-blue-fg">(a, *args)</span>
+<span class="ansi-green-intense-fg ansi-bold">    676</span>       <span class="ansi-red-intense-fg ansi-bold"># pylint: disable=protected-access</span>
+<span class="ansi-green-fg">--&gt; 677</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">return</span> getattr<span class="ansi-yellow-intense-fg ansi-bold">(</span>ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>Tensor<span class="ansi-yellow-intense-fg ansi-bold">,</span> operator<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">(</span>a<span class="ansi-yellow-intense-fg ansi-bold">.</span>_AsTensor<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">*</span>args<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    678</span>     <span class="ansi-red-intense-fg ansi-bold"># Propagate __doc__ to wrapper</span>
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\ops\math_ops.py</span> in <span class="ansi-cyan-fg">binary_op_wrapper</span><span class="ansi-blue-fg">(x, y)</span>
+<span class="ansi-green-intense-fg ansi-bold">    792</span>       <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>y<span class="ansi-yellow-intense-fg ansi-bold">,</span> sparse_tensor<span class="ansi-yellow-intense-fg ansi-bold">.</span>SparseTensor<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">--&gt; 793</span><span class="ansi-red-fg">         </span>y <span class="ansi-yellow-intense-fg ansi-bold">=</span> ops<span class="ansi-yellow-intense-fg ansi-bold">.</span>convert_to_tensor<span class="ansi-yellow-intense-fg ansi-bold">(</span>y<span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>x<span class="ansi-yellow-intense-fg ansi-bold">.</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">.</span>base_dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#34;y&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    794</span>       <span class="ansi-green-intense-fg ansi-bold">return</span> func<span class="ansi-yellow-intense-fg ansi-bold">(</span>x<span class="ansi-yellow-intense-fg ansi-bold">,</span> y<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>name<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">convert_to_tensor</span><span class="ansi-blue-fg">(value, dtype, name, preferred_dtype)</span>
+<span class="ansi-green-intense-fg ansi-bold">    636</span>       preferred_dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>preferred_dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span>
+<span class="ansi-green-fg">--&gt; 637</span><span class="ansi-red-fg">       as_ref=False)
+</span><span class="ansi-green-intense-fg ansi-bold">    638</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">internal_convert_to_tensor</span><span class="ansi-blue-fg">(value, dtype, name, as_ref, preferred_dtype)</span>
+<span class="ansi-green-intense-fg ansi-bold">    701</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> ret <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">--&gt; 702</span><span class="ansi-red-fg">           </span>ret <span class="ansi-yellow-intense-fg ansi-bold">=</span> conversion_func<span class="ansi-yellow-intense-fg ansi-bold">(</span>value<span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype<span class="ansi-yellow-intense-fg ansi-bold">=</span>dtype<span class="ansi-yellow-intense-fg ansi-bold">,</span> name<span class="ansi-yellow-intense-fg ansi-bold">=</span>name<span class="ansi-yellow-intense-fg ansi-bold">,</span> as_ref<span class="ansi-yellow-intense-fg ansi-bold">=</span>as_ref<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    703</span> 
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">_TensorTensorConversionFunction</span><span class="ansi-blue-fg">(t, dtype, name, as_ref)</span>
+<span class="ansi-green-intense-fg ansi-bold">    574</span>         <span class="ansi-blue-intense-fg ansi-bold">&#34;Tensor conversion requested dtype %s for Tensor with dtype %s: %r&#34;</span>
+<span class="ansi-green-fg">--&gt; 575</span><span class="ansi-red-fg">         % (dtype.name, t.dtype.name, str(t)))
+</span><span class="ansi-green-intense-fg ansi-bold">    576</span>   <span class="ansi-green-intense-fg ansi-bold">return</span> t
+
+<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(256,), dtype=int32)&#39;
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-14-19a63a32d845&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
+</span>
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\contextlib.py</span> in <span class="ansi-cyan-fg">__exit__</span><span class="ansi-blue-fg">(self, type, value, traceback)</span>
+<span class="ansi-green-intense-fg ansi-bold">     75</span>                 value <span class="ansi-yellow-intense-fg ansi-bold">=</span> type<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     76</span>             <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">---&gt; 77</span><span class="ansi-red-fg">                 </span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>gen<span class="ansi-yellow-intense-fg ansi-bold">.</span>throw<span class="ansi-yellow-intense-fg ansi-bold">(</span>type<span class="ansi-yellow-intense-fg ansi-bold">,</span> value<span class="ansi-yellow-intense-fg ansi-bold">,</span> traceback<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     78</span>                 <span class="ansi-green-intense-fg ansi-bold">raise</span> RuntimeError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;generator didn&#39;t stop after throw()&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     79</span>             <span class="ansi-green-intense-fg ansi-bold">except</span> StopIteration <span class="ansi-green-intense-fg ansi-bold">as</span> exc<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\framework\ops.py</span> in <span class="ansi-cyan-fg">get_controller</span><span class="ansi-blue-fg">(self, default)</span>
+<span class="ansi-green-intense-fg ansi-bold">   3614</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   3615</span>       <span class="ansi-green-intense-fg ansi-bold">if</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_enforce_nesting<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">-&gt; 3616</span><span class="ansi-red-fg">         </span><span class="ansi-green-intense-fg ansi-bold">if</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>stack<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-green-intense-fg ansi-bold">is</span> <span class="ansi-green-intense-fg ansi-bold">not</span> default<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   3617</span>           raise AssertionError(
+<span class="ansi-green-intense-fg ansi-bold">   3618</span>               <span class="ansi-blue-intense-fg ansi-bold">&#34;Nesting violated for default stack of %s objects&#34;</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
 </div>
 </div>
 
