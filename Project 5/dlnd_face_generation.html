@@ -11844,7 +11844,7 @@ Found celeba Data
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0xaa235bba8&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0xd8fb27cc18&gt;</pre>
 </div>
 
 </div>
@@ -12426,7 +12426,7 @@ JgUDAwMbzKRgYGBgg5kUDAwMbDCTgoGBgQ3/D1N3uai2RAKbAAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0xaa240eba8&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0xd8fb32fbe0&gt;</pre>
 </div>
 
 </div>
@@ -13679,10 +13679,11 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">leaky_relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13692,7 +13693,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">discriminator</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -13707,26 +13708,20 @@ Default GPU Device: /gpu:0
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;discriminator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="n">reuse</span><span class="p">):</span>
 
         <span class="c1">#print(images)</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-        
-
-        
-        <span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">leaky_relu</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+            
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="n">bn2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bn2</span><span class="p">)</span>
+        <span class="n">bn2</span> <span class="o">=</span> <span class="n">leaky_relu</span><span class="p">(</span><span class="n">bn2</span><span class="p">)</span>
         
-        <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">bn2</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-        <span class="n">bn3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bn3</span><span class="p">)</span>
-
-        <span class="n">x4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">bn3</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-        <span class="n">bn4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-  
-        <span class="nb">print</span><span class="p">(</span><span class="n">bn4</span><span class="p">)</span>
+        
+        <span class="c1"># Dropout</span>
+        <span class="n">bn2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">bn2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    
 
         <span class="c1"># Flatten it</span>
-        <span class="n">flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">bn4</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">512</span><span class="p">))</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">bn2</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">512</span><span class="p">))</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
         
@@ -13755,18 +13750,10 @@ Default GPU Device: /gpu:0
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>___Discriminator___
 images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
-Tensor(&#34;conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
-Tensor(&#34;batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
-Tensor(&#34;batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
-Tensor(&#34;batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out :Tensor(&#34;Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
 logits :Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
 ___Discriminator___
 images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 3), dtype=float32)
-Tensor(&#34;conv2d_5/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
-Tensor(&#34;batch_normalization_4/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
-Tensor(&#34;batch_normalization_5/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
-Tensor(&#34;batch_normalization_6/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out :Tensor(&#34;Sigmoid_1:0&#34;, shape=(?, 1), dtype=float32)
 logits :Tensor(&#34;dense_2/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
 Tests Passed
@@ -13790,7 +13777,7 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -13814,30 +13801,29 @@ Tests Passed
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s1">&#39;generator&#39;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span> <span class="ow">not</span> <span class="n">is_train</span><span class="p">):</span>        
         <span class="c1"># First fully connected layer</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">256</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">512</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-        <span class="c1"># Reshape it to start the convolutional stack</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">is_train</span><span class="p">)</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-        <span class="c1"># 4x4x512 now</span>
         
+        
+        <span class="c1"># Reshape it to start the convolutional stack</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">training</span> <span class="o">=</span> <span class="n">is_train</span><span class="p">)</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">leaky_relu</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+ 
         
         <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d_transpose</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
         <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">is_train</span><span class="p">)</span>
- 
-        <span class="nb">print</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
-        <span class="c1"># 16x16x128 now</span>
+        <span class="n">x3</span> <span class="o">=</span> <span class="n">leaky_relu</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+
+        
+        <span class="c1"># Dropout</span>
+        <span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        
         
         <span class="c1"># Output layer</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">conv2d_transpose</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
-        <span class="c1"># 32x32x3 now</span>
-        <span class="c1">#print(&quot;---&quot;)</span>
-        <span class="c1">#print(out_channel_dim)</span>
-        <span class="c1">#print(logits)</span>
-        
+
         <span class="n">out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;out: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">out</span>
@@ -13863,19 +13849,15 @@ Tests Passed
 output channel dim : 5
 z : Tensor(&#34;Placeholder:0&#34;, shape=(?, 100), dtype=float32)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
-Tensor(&#34;Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;dense/BiasAdd:0&#34;, shape=(?, 25088), dtype=float32)
+Tensor(&#34;Maximum:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out: Tensor(&#34;Tanh:0&#34;, shape=(?, 28, 28, 5), dtype=float32)
 __Generator__
 output channel dim : 5
 z : Tensor(&#34;Placeholder:0&#34;, shape=(?, 100), dtype=float32)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Tensor(&#34;dense_2/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
-Tensor(&#34;Reshape_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;batch_normalization_4/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;dense_2/BiasAdd:0&#34;, shape=(?, 25088), dtype=float32)
+Tensor(&#34;Maximum_2:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out: Tensor(&#34;Tanh_1:0&#34;, shape=(?, 28, 28, 5), dtype=float32)
 Tests Passed
 </pre>
@@ -13902,7 +13884,7 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13915,7 +13897,7 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_loss</span><span class="p">(</span><span class="n">input_real</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">out_channel_dim</span><span class="p">):</span>
@@ -13939,7 +13921,7 @@ Tests Passed
 
     
     <span class="n">d_loss_real</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_real</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">d_logits_real</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)))</span>
-    <span class="n">d_loss_fake</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">d_logits_real</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)))</span>
+    <span class="n">d_loss_fake</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">d_logits_fake</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">d_logits_real</span><span class="p">)))</span>
    
 
     <span class="c1">#d_loss_real = tf.reduce_mean( tf.nn.sigmoid_cross_entropy_with_logits(logits=d_logits_real, labels=tf.ones_like(d_model_real)))</span>
@@ -13974,26 +13956,16 @@ __Generator__
 output channel dim : 4
 z : Tensor(&#34;Placeholder_1:0&#34;, shape=(?, 100), dtype=float32)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=float32)
-Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;generator/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 256), dtype=float32)
-Tensor(&#34;generator/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 25088), dtype=float32)
+Tensor(&#34;generator/Maximum:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out: Tensor(&#34;generator/Tanh:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
 ------------------------
 ___Discriminator___
 images :Tensor(&#34;Placeholder:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
-Tensor(&#34;discriminator/conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
-Tensor(&#34;discriminator/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
-Tensor(&#34;discriminator/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
-Tensor(&#34;discriminator/batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out :Tensor(&#34;discriminator/Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
 logits :Tensor(&#34;discriminator/dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
 ___Discriminator___
 images :Tensor(&#34;generator/Tanh:0&#34;, shape=(?, 28, 28, 4), dtype=float32)
-Tensor(&#34;discriminator_1/conv2d/BiasAdd:0&#34;, shape=(?, 28, 28, 64), dtype=float32)
-Tensor(&#34;discriminator_1/batch_normalization/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 128), dtype=float32)
-Tensor(&#34;discriminator_1/batch_normalization_2/batchnorm/add_1:0&#34;, shape=(?, 14, 14, 256), dtype=float32)
-Tensor(&#34;discriminator_1/batch_normalization_3/batchnorm/add_1:0&#34;, shape=(?, 7, 7, 512), dtype=float32)
 out :Tensor(&#34;discriminator_1/Sigmoid:0&#34;, shape=(?, 1), dtype=float32)
 logits :Tensor(&#34;discriminator_1/dense/BiasAdd:0&#34;, shape=(?, 1), dtype=float32)
 Tests Passed
@@ -14017,7 +13989,7 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_opt</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">):</span>
@@ -14081,7 +14053,7 @@ Tests Passed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -14149,7 +14121,7 @@ Tensor("input_z:0", shape=(?, 100), dtype=int32)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">get_batches</span><span class="p">,</span> <span class="n">data_shape</span><span class="p">,</span> <span class="n">data_image_mode</span><span class="p">):</span>
@@ -14179,14 +14151,19 @@ Tensor("input_z:0", shape=(?, 100), dtype=int32)
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok1&quot;</span><span class="p">)</span>
         
     <span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">model_inputs</span><span class="p">(</span><span class="n">data_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">data_shape</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">z_dim</span><span class="p">)</span>
+    
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok2&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">input_z</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">real_input_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;________________&quot;</span><span class="p">)</span>
-    <span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span> <span class="o">=</span> <span class="n">model_loss</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="n">real_input_images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#????</span>
+    
+    <span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span> <span class="o">=</span> <span class="n">model_loss</span><span class="p">(</span><span class="n">real_input_images</span><span class="p">,</span> <span class="n">input_z</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_image_mode</span><span class="p">))</span> <span class="c1">#????</span>
+    
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok3&quot;</span><span class="p">)</span>
+    
     <span class="n">d_train_opt</span><span class="p">,</span> <span class="n">g_train_opt</span> <span class="o">=</span> <span class="n">model_opt</span><span class="p">(</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">g_loss</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">)</span>
+    
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok4&quot;</span><span class="p">)</span>
     
 
@@ -14256,12 +14233,12 @@ Tensor("Placeholder_1:0", shape=(?, 100), dtype=float32)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
-<span class="n">z_dim</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0002</span>
+<span class="n">z_dim</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0004</span>
 <span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 
@@ -14288,28 +14265,27 @@ Tensor("Placeholder_1:0", shape=(?, 100), dtype=float32)
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>2
 32
-100
-0.0002
+50
+0.0004
 0.2
-&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x0000000AABDB9C88&gt;&gt;
+&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x000000D8E4259668&gt;&gt;
 (60000, 28, 28, 1)
 L
 ____________________
 ok1
 ok2
 Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 1), dtype=int32)
-Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 50), dtype=int32)
 1
 ________________
 Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 1), dtype=int32)
-Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 50), dtype=int32)
 1
 __Generator__
 output channel dim : 1
-z : Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+z : Tensor(&#34;input_z:0&#34;, shape=(?, 50), dtype=int32)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=int32)
-Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 25088), dtype=int32)
 </pre>
 </div>
 </div>
@@ -14324,24 +14300,24 @@ Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
 <span class="ansi-green-fg">-&gt; 3613</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">yield</span> default
 <span class="ansi-green-intense-fg ansi-bold">   3614</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-13-de23de5204ab&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-23-c09bf60ed942&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
 </span>
-<span class="ansi-green-fg">&lt;ipython-input-12-052e5e51a3a6&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">     32</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;________________&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> real_input_images<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;ok3&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-008ada07d350&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span> 
+<span class="ansi-green-fg">---&gt; 35</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_image_mode<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
+<span class="ansi-green-intense-fg ansi-bold">     36</span> 
 
-<span class="ansi-green-fg">&lt;ipython-input-9-3ed5522ca5c5&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
+<span class="ansi-green-fg">&lt;ipython-input-10-3c14ba69a1a6&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span> 
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     16</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;------------------------&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-7-70de0e547b2e&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
-<span class="ansi-green-intense-fg ansi-bold">     26</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     28</span> 
+<span class="ansi-green-fg">&lt;ipython-input-8-9d4f0bb678fd&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
+<span class="ansi-green-intense-fg ansi-bold">     27</span>         x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>reshape<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">512</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 28</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span>         x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> leaky_relu<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
 <span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">batch_normalization</span><span class="ansi-blue-fg">(inputs, axis, momentum, epsilon, center, scale, beta_initializer, gamma_initializer, moving_mean_initializer, moving_variance_initializer, beta_regularizer, gamma_regularizer, training, trainable, name, reuse)</span>
 <span class="ansi-green-intense-fg ansi-bold">    316</span>       _scope=name)
@@ -14393,12 +14369,12 @@ Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
 <span class="ansi-green-fg">--&gt; 575</span><span class="ansi-red-fg">         % (dtype.name, t.dtype.name, str(t)))
 </span><span class="ansi-green-intense-fg ansi-bold">    576</span>   <span class="ansi-green-intense-fg ansi-bold">return</span> t
 
-<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(256,), dtype=int32)&#39;
+<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(512,), dtype=int32)&#39;
 
 During handling of the above exception, another exception occurred:
 
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-13-de23de5204ab&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-23-c09bf60ed942&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
@@ -14437,13 +14413,13 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">z_dim</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0002</span>
-<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.5</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">z_dim</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0004</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 
 
@@ -14469,29 +14445,28 @@ During handling of the above exception, another exception occurred:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1
-128
-100
-0.0002
-0.5
-&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x0000000AFED73CC0&gt;&gt;
+64
+250
+0.0004
+0.2
+&lt;bound method Dataset.get_batches of &lt;helper.Dataset object at 0x000000D884E56F28&gt;&gt;
 (202599, 28, 28, 3)
 RGB
 ____________________
 ok1
 ok2
 Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 3), dtype=int32)
-Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 250), dtype=int32)
 3
 ________________
 Tensor(&#34;real_input_images:0&#34;, shape=(?, 28, 28, 3), dtype=int32)
-Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+Tensor(&#34;input_z:0&#34;, shape=(?, 250), dtype=int32)
 3
 __Generator__
 output channel dim : 3
-z : Tensor(&#34;input_z:0&#34;, shape=(?, 100), dtype=int32)
+z : Tensor(&#34;input_z:0&#34;, shape=(?, 250), dtype=int32)
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 12544), dtype=int32)
-Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
+Tensor(&#34;generator/dense/BiasAdd:0&#34;, shape=(?, 25088), dtype=int32)
 </pre>
 </div>
 </div>
@@ -14506,24 +14481,24 @@ Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
 <span class="ansi-green-fg">-&gt; 3613</span><span class="ansi-red-fg">       </span><span class="ansi-green-intense-fg ansi-bold">yield</span> default
 <span class="ansi-green-intense-fg ansi-bold">   3614</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-14-19a63a32d845&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-21-7eadbd124921&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
 </span>
-<span class="ansi-green-fg">&lt;ipython-input-12-052e5e51a3a6&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">     32</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;________________&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> real_input_images<span class="ansi-yellow-intense-fg ansi-bold">.</span>shape<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;ok3&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-008ada07d350&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span> 
+<span class="ansi-green-fg">---&gt; 35</span><span class="ansi-red-fg">     </span>d_loss<span class="ansi-yellow-intense-fg ansi-bold">,</span> g_loss <span class="ansi-yellow-intense-fg ansi-bold">=</span> model_loss<span class="ansi-yellow-intense-fg ansi-bold">(</span>real_input_images<span class="ansi-yellow-intense-fg ansi-bold">,</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>data_image_mode<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-red-intense-fg ansi-bold">#????</span>
+<span class="ansi-green-intense-fg ansi-bold">     36</span> 
 
-<span class="ansi-green-fg">&lt;ipython-input-9-3ed5522ca5c5&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
+<span class="ansi-green-fg">&lt;ipython-input-10-3c14ba69a1a6&gt;</span> in <span class="ansi-cyan-fg">model_loss</span><span class="ansi-blue-fg">(input_real, input_z, out_channel_dim)</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span> 
 <span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg">     </span>g_model <span class="ansi-yellow-intense-fg ansi-bold">=</span> generator<span class="ansi-yellow-intense-fg ansi-bold">(</span> input_z<span class="ansi-yellow-intense-fg ansi-bold">,</span> out_channel_dim<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     16</span>     print<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;------------------------&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-7-70de0e547b2e&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
-<span class="ansi-green-intense-fg ansi-bold">     26</span>         print<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">---&gt; 27</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     28</span> 
+<span class="ansi-green-fg">&lt;ipython-input-8-9d4f0bb678fd&gt;</span> in <span class="ansi-cyan-fg">generator</span><span class="ansi-blue-fg">(z, out_channel_dim, is_train)</span>
+<span class="ansi-green-intense-fg ansi-bold">     27</span>         x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>reshape<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">7</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">512</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">---&gt; 28</span><span class="ansi-red-fg">         </span>x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>layers<span class="ansi-yellow-intense-fg ansi-bold">.</span>batch_normalization<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">,</span> training <span class="ansi-yellow-intense-fg ansi-bold">=</span> is_train<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     29</span>         x1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> leaky_relu<span class="ansi-yellow-intense-fg ansi-bold">(</span>x1<span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
 <span class="ansi-green-fg">C:\Program Files\Anaconda3\lib\site-packages\tensorflow\python\layers\normalization.py</span> in <span class="ansi-cyan-fg">batch_normalization</span><span class="ansi-blue-fg">(inputs, axis, momentum, epsilon, center, scale, beta_initializer, gamma_initializer, moving_mean_initializer, moving_variance_initializer, beta_regularizer, gamma_regularizer, training, trainable, name, reuse)</span>
 <span class="ansi-green-intense-fg ansi-bold">    316</span>       _scope=name)
@@ -14575,12 +14550,12 @@ Tensor(&#34;generator/Reshape:0&#34;, shape=(?, 7, 7, 256), dtype=int32)
 <span class="ansi-green-fg">--&gt; 575</span><span class="ansi-red-fg">         % (dtype.name, t.dtype.name, str(t)))
 </span><span class="ansi-green-intense-fg ansi-bold">    576</span>   <span class="ansi-green-intense-fg ansi-bold">return</span> t
 
-<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(256,), dtype=int32)&#39;
+<span class="ansi-red-fg">ValueError</span>: Tensor conversion requested dtype float32 for Tensor with dtype int32: &#39;Tensor(&#34;generator/batch_normalization/Reshape_2:0&#34;, shape=(512,), dtype=int32)&#39;
 
 During handling of the above exception, another exception occurred:
 
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-19a63a32d845&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-21-7eadbd124921&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     14</span> <span class="ansi-green-intense-fg ansi-bold">with</span> tf<span class="ansi-yellow-intense-fg ansi-bold">.</span>Graph<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>as_default<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
