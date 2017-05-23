@@ -11844,7 +11844,7 @@ Found celeba Data
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0x7fcc01793a20&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x7f713a7bfac8&gt;</pre>
 </div>
 
 </div>
@@ -12407,7 +12407,7 @@ LFywTMHCwsIFyxQsLCxcsEzBwsLCBcsULCwsXLBMwcLCwoX/B655rrcQbagAAAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0x7fcc016f4be0&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x7f71375f7c18&gt;</pre>
 </div>
 
 </div>
@@ -14043,7 +14043,7 @@ WWWVnbFqU6isssrOWLUpVFZZZWfsfwOEODRoQmUCeQAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch_count</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">get_batches</span><span class="p">,</span> <span class="n">data_shape</span><span class="p">,</span> <span class="n">data_image_mode</span><span class="p">):</span>
@@ -14084,14 +14084,16 @@ WWWVnbFqU6isssrOWLUpVFZZZWfsfwOEODRoQmUCeQAAAABJRU5ErkJggg==
                 <span class="c1">#_ = sess.run(d_train_opt, feed_dict={real_input_images: batch_images, input_z: batch_z})</span>
                
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok4&quot;</span><span class="p">)</span>
-                <span class="n">_</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">g_train_opt</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">input_z</span><span class="p">:</span> <span class="n">batch_z</span><span class="p">})</span>
+                <span class="c1">#_ = sess.run(g_train_opt, feed_dict={input_z: batch_z})</span>
+                <span class="n">_</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">g_train_opt</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span> <span class="n">real_input_images</span><span class="p">:</span><span class="n">batch_images</span><span class="p">})</span>
                
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok5&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">steps</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="c1"># At the end of each epoch, get the losses and print them out</span>
                     <span class="n">train_loss_d</span> <span class="o">=</span> <span class="n">d_loss</span><span class="o">.</span><span class="n">eval</span><span class="p">({</span><span class="n">input_z</span><span class="p">:</span> <span class="n">batch_z</span><span class="p">,</span> <span class="n">real_input_images</span><span class="p">:</span> <span class="n">batch_images</span><span class="p">})</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ok6&quot;</span><span class="p">)</span>
-                    <span class="n">train_loss_g</span> <span class="o">=</span> <span class="n">g_loss</span><span class="o">.</span><span class="n">eval</span><span class="p">({</span><span class="n">input_z</span><span class="p">:</span> <span class="n">batch_z</span><span class="p">})</span>
+                    <span class="c1">#train_loss_g = g_loss.eval({input_z: batch_z})</span>
+                    <span class="n">train_loss_g</span> <span class="o">=</span> <span class="n">g_loss</span><span class="o">.</span><span class="n">eval</span><span class="p">({</span><span class="n">real_input_images</span><span class="p">:</span><span class="n">batch_images</span><span class="p">})</span>
 
                     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span><span class="p">),</span>
                           <span class="s2">&quot;Discriminator Loss: </span><span class="si">{:.4f}</span><span class="s2">...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_loss_d</span><span class="p">),</span>
@@ -14123,7 +14125,7 @@ WWWVnbFqU6isssrOWLUpVFZZZWfsfwOEODRoQmUCeQAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>
@@ -14185,8 +14187,8 @@ ok4
 <span class="ansi-green-fg">--&gt; 466</span><span class="ansi-red-fg">           pywrap_tensorflow.TF_GetCode(status))
 </span><span class="ansi-green-intense-fg ansi-bold">    467</span>   <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
 
-<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;real_input_images&#39; with dtype float
-	 [[Node: real_input_images = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
 
 During handling of the above exception, another exception occurred:
 
@@ -14196,14 +14198,14 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">-&gt; 3625</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">yield</span> default
 <span class="ansi-green-intense-fg ansi-bold">   3626</span>     <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-14-20e5287a2d10&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-19-20e5287a2d10&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     13</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
 </span>
-<span class="ansi-green-fg">&lt;ipython-input-13-0c5f0ac8639c&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>                 print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;ok4&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 39</span><span class="ansi-red-fg">                 </span>_ <span class="ansi-blue-fg">=</span> sess<span class="ansi-blue-fg">.</span>run<span class="ansi-blue-fg">(</span>g_train_opt<span class="ansi-blue-fg">,</span> feed_dict<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span>input_z<span class="ansi-blue-fg">:</span> batch_z<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span> 
+<span class="ansi-green-fg">&lt;ipython-input-18-fc5118caa1c3&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>                 <span class="ansi-red-fg">#_ = sess.run(g_train_opt, feed_dict={input_z: batch_z})</span>
+<span class="ansi-green-fg">---&gt; 40</span><span class="ansi-red-fg">                 </span>_ <span class="ansi-blue-fg">=</span> sess<span class="ansi-blue-fg">.</span>run<span class="ansi-blue-fg">(</span>g_train_opt<span class="ansi-blue-fg">,</span> feed_dict<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span> real_input_images<span class="ansi-blue-fg">:</span>batch_images<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     41</span> 
 
 <span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(self, fetches, feed_dict, options, run_metadata)</span>
 <span class="ansi-green-intense-fg ansi-bold">    777</span>       result = self._run(None, fetches, feed_dict, options_ptr,
@@ -14225,10 +14227,10 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">-&gt; 1052</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">raise</span> type<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span>node_def<span class="ansi-blue-fg">,</span> op<span class="ansi-blue-fg">,</span> message<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">   1053</span> 
 
-<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;real_input_images&#39; with dtype float
-	 [[Node: real_input_images = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
 
-Caused by op &#39;real_input_images&#39;, defined at:
+Caused by op &#39;input_z&#39;, defined at:
   File &#34;/home/dieter/anaconda3/lib/python3.6/runpy.py&#34;, line 193, in _run_module_as_main
     &#34;__main__&#34;, mod_spec)
   File &#34;/home/dieter/anaconda3/lib/python3.6/runpy.py&#34;, line 85, in _run_code
@@ -14269,12 +14271,12 @@ Caused by op &#39;real_input_images&#39;, defined at:
     if self.run_code(code, result):
   File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/IPython/core/interactiveshell.py&#34;, line 2881, in run_code
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File &#34;&lt;ipython-input-14-20e5287a2d10&gt;&#34;, line 14, in &lt;module&gt;
+  File &#34;&lt;ipython-input-19-20e5287a2d10&gt;&#34;, line 14, in &lt;module&gt;
     mnist_dataset.shape, mnist_dataset.image_mode)
-  File &#34;&lt;ipython-input-13-0c5f0ac8639c&gt;&#34;, line 15, in train
+  File &#34;&lt;ipython-input-18-fc5118caa1c3&gt;&#34;, line 15, in train
     real_input_images, input_z, learning_r = model_inputs(data_shape[1], data_shape[2], data_shape[3], z_dim)
-  File &#34;&lt;ipython-input-5-40ac3208a07d&gt;&#34;, line 14, in model_inputs
-    real_input_images = tf.placeholder(tf.float32, [None, image_width, image_height, image_channels], name=&#39;real_input_images&#39;)
+  File &#34;&lt;ipython-input-5-40ac3208a07d&gt;&#34;, line 16, in model_inputs
+    z_input = tf.placeholder(tf.float32, [None, z_dim], name=&#39;input_z&#39;)
   File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py&#34;, line 1507, in placeholder
     name=name)
   File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py&#34;, line 1997, in _placeholder
@@ -14286,14 +14288,14 @@ Caused by op &#39;real_input_images&#39;, defined at:
   File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/ops.py&#34;, line 1228, in __init__
     self._traceback = _extract_stack()
 
-InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor &#39;real_input_images&#39; with dtype float
-	 [[Node: real_input_images = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
 
 
 During handling of the above exception, another exception occurred:
 
 <span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-20e5287a2d10&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">&lt;ipython-input-19-20e5287a2d10&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     12</span> <span class="ansi-green-fg">with</span> tf<span class="ansi-blue-fg">.</span>Graph<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>as_default<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     13</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, mnist_dataset.get_batches,
 <span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg">           mnist_dataset.shape, mnist_dataset.image_mode)
@@ -14332,7 +14334,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
@@ -14354,6 +14356,179 @@ During handling of the above exception, another exception occurred:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ok1
+ok2
+ok3
+ok4
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">InvalidArgumentError</span>                      Traceback (most recent call last)
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">_do_call</span><span class="ansi-blue-fg">(self, fn, *args)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1038</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1039</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">return</span> fn<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1040</span>     <span class="ansi-green-fg">except</span> errors<span class="ansi-blue-fg">.</span>OpError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">_run_fn</span><span class="ansi-blue-fg">(session, feed_dict, fetch_list, target_list, options, run_metadata)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1020</span>                                  feed_dict<span class="ansi-blue-fg">,</span> fetch_list<span class="ansi-blue-fg">,</span> target_list<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">-&gt; 1021</span><span class="ansi-red-fg">                                  status, run_metadata)
+</span><span class="ansi-green-intense-fg ansi-bold">   1022</span> 
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/contextlib.py</span> in <span class="ansi-cyan-fg">__exit__</span><span class="ansi-blue-fg">(self, type, value, traceback)</span>
+<span class="ansi-green-intense-fg ansi-bold">     88</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 89</span><span class="ansi-red-fg">                 </span>next<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>gen<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     90</span>             <span class="ansi-green-fg">except</span> StopIteration<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/errors_impl.py</span> in <span class="ansi-cyan-fg">raise_exception_on_not_ok_status</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">    465</span>           compat<span class="ansi-blue-fg">.</span>as_text<span class="ansi-blue-fg">(</span>pywrap_tensorflow<span class="ansi-blue-fg">.</span>TF_Message<span class="ansi-blue-fg">(</span>status<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 466</span><span class="ansi-red-fg">           pywrap_tensorflow.TF_GetCode(status))
+</span><span class="ansi-green-intense-fg ansi-bold">    467</span>   <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">InvalidArgumentError</span>                      Traceback (most recent call last)
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ansi-cyan-fg">get_controller</span><span class="ansi-blue-fg">(self, default)</span>
+<span class="ansi-green-intense-fg ansi-bold">   3624</span>       self<span class="ansi-blue-fg">.</span>stack<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>default<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 3625</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">yield</span> default
+<span class="ansi-green-intense-fg ansi-bold">   3626</span>     <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-17-7eadbd124921&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
+</span>
+<span class="ansi-green-fg">&lt;ipython-input-15-cd1a51660ed7&gt;</span> in <span class="ansi-cyan-fg">train</span><span class="ansi-blue-fg">(epoch_count, batch_size, z_dim, learning_rate, beta1, get_batches, data_shape, data_image_mode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>                 <span class="ansi-red-fg">#_ = sess.run(g_train_opt, feed_dict={input_z: batch_z})</span>
+<span class="ansi-green-fg">---&gt; 40</span><span class="ansi-red-fg">                 </span>_ <span class="ansi-blue-fg">=</span> sess<span class="ansi-blue-fg">.</span>run<span class="ansi-blue-fg">(</span>g_train_opt<span class="ansi-blue-fg">,</span> feed_dict<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">{</span> real_input_images<span class="ansi-blue-fg">:</span>batch_images<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     41</span> 
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(self, fetches, feed_dict, options, run_metadata)</span>
+<span class="ansi-green-intense-fg ansi-bold">    777</span>       result = self._run(None, fetches, feed_dict, options_ptr,
+<span class="ansi-green-fg">--&gt; 778</span><span class="ansi-red-fg">                          run_metadata_ptr)
+</span><span class="ansi-green-intense-fg ansi-bold">    779</span>       <span class="ansi-green-fg">if</span> run_metadata<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">_run</span><span class="ansi-blue-fg">(self, handle, fetches, feed_dict, options, run_metadata)</span>
+<span class="ansi-green-intense-fg ansi-bold">    981</span>       results = self._do_run(handle, final_targets, final_fetches,
+<span class="ansi-green-fg">--&gt; 982</span><span class="ansi-red-fg">                              feed_dict_string, options, run_metadata)
+</span><span class="ansi-green-intense-fg ansi-bold">    983</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">_do_run</span><span class="ansi-blue-fg">(self, handle, target_list, fetch_list, feed_dict, options, run_metadata)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1031</span>       return self._do_call(_run_fn, self._session, feed_dict, fetch_list,
+<span class="ansi-green-fg">-&gt; 1032</span><span class="ansi-red-fg">                            target_list, options, run_metadata)
+</span><span class="ansi-green-intense-fg ansi-bold">   1033</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/client/session.py</span> in <span class="ansi-cyan-fg">_do_call</span><span class="ansi-blue-fg">(self, fn, *args)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1051</span>           <span class="ansi-green-fg">pass</span>
+<span class="ansi-green-fg">-&gt; 1052</span><span class="ansi-red-fg">       </span><span class="ansi-green-fg">raise</span> type<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span>node_def<span class="ansi-blue-fg">,</span> op<span class="ansi-blue-fg">,</span> message<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1053</span> 
+
+<span class="ansi-red-fg">InvalidArgumentError</span>: You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+
+Caused by op &#39;input_z&#39;, defined at:
+  File &#34;/home/dieter/anaconda3/lib/python3.6/runpy.py&#34;, line 193, in _run_module_as_main
+    &#34;__main__&#34;, mod_spec)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/runpy.py&#34;, line 85, in _run_code
+    exec(code, run_globals)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/__main__.py&#34;, line 3, in &lt;module&gt;
+    app.launch_new_instance()
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/traitlets/config/application.py&#34;, line 658, in launch_instance
+    app.start()
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/kernelapp.py&#34;, line 474, in start
+    ioloop.IOLoop.instance().start()
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/zmq/eventloop/ioloop.py&#34;, line 177, in start
+    super(ZMQIOLoop, self).start()
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tornado/ioloop.py&#34;, line 887, in start
+    handler_func(fd_obj, events)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tornado/stack_context.py&#34;, line 275, in null_wrapper
+    return fn(*args, **kwargs)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/zmq/eventloop/zmqstream.py&#34;, line 440, in _handle_events
+    self._handle_recv()
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/zmq/eventloop/zmqstream.py&#34;, line 472, in _handle_recv
+    self._run_callback(callback, msg)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/zmq/eventloop/zmqstream.py&#34;, line 414, in _run_callback
+    callback(*args, **kwargs)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tornado/stack_context.py&#34;, line 275, in null_wrapper
+    return fn(*args, **kwargs)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/kernelbase.py&#34;, line 276, in dispatcher
+    return self.dispatch_shell(stream, msg)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/kernelbase.py&#34;, line 228, in dispatch_shell
+    handler(stream, idents, msg)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/kernelbase.py&#34;, line 390, in execute_request
+    user_expressions, allow_stdin)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/ipkernel.py&#34;, line 196, in do_execute
+    res = shell.run_cell(code, store_history=store_history, silent=silent)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/ipykernel/zmqshell.py&#34;, line 501, in run_cell
+    return super(ZMQInteractiveShell, self).run_cell(*args, **kwargs)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/IPython/core/interactiveshell.py&#34;, line 2717, in run_cell
+    interactivity=interactivity, compiler=compiler, result=result)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/IPython/core/interactiveshell.py&#34;, line 2821, in run_ast_nodes
+    if self.run_code(code, result):
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/IPython/core/interactiveshell.py&#34;, line 2881, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &#34;&lt;ipython-input-17-7eadbd124921&gt;&#34;, line 16, in &lt;module&gt;
+    celeba_dataset.shape, celeba_dataset.image_mode)
+  File &#34;&lt;ipython-input-15-cd1a51660ed7&gt;&#34;, line 15, in train
+    real_input_images, input_z, learning_r = model_inputs(data_shape[1], data_shape[2], data_shape[3], z_dim)
+  File &#34;&lt;ipython-input-5-40ac3208a07d&gt;&#34;, line 16, in model_inputs
+    z_input = tf.placeholder(tf.float32, [None, z_dim], name=&#39;input_z&#39;)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py&#34;, line 1507, in placeholder
+    name=name)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py&#34;, line 1997, in _placeholder
+    name=name)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py&#34;, line 768, in apply_op
+    op_def=op_def)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/ops.py&#34;, line 2336, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File &#34;/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/ops.py&#34;, line 1228, in __init__
+    self._traceback = _extract_stack()
+
+InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor &#39;input_z&#39; with dtype float
+	 [[Node: input_z = Placeholder[dtype=DT_FLOAT, shape=[], _device=&#34;/job:localhost/replica:0/task:0/cpu:0&#34;]()]]
+
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-17-7eadbd124921&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> <span class="ansi-green-fg">with</span> tf<span class="ansi-blue-fg">.</span>Graph<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>as_default<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     train(epochs, batch_size, z_dim, learning_rate, beta1, celeba_dataset.get_batches,
+<span class="ansi-green-fg">---&gt; 16</span><span class="ansi-red-fg">           celeba_dataset.shape, celeba_dataset.image_mode)
+</span>
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/contextlib.py</span> in <span class="ansi-cyan-fg">__exit__</span><span class="ansi-blue-fg">(self, type, value, traceback)</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span>                 value <span class="ansi-blue-fg">=</span> type<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     99</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 100</span><span class="ansi-red-fg">                 </span>self<span class="ansi-blue-fg">.</span>gen<span class="ansi-blue-fg">.</span>throw<span class="ansi-blue-fg">(</span>type<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">,</span> traceback<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    101</span>                 <span class="ansi-green-fg">raise</span> RuntimeError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;generator didn&#39;t stop after throw()&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    102</span>             <span class="ansi-green-fg">except</span> StopIteration <span class="ansi-green-fg">as</span> exc<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/home/dieter/anaconda3/lib/python3.6/site-packages/tensorflow/python/framework/ops.py</span> in <span class="ansi-cyan-fg">get_controller</span><span class="ansi-blue-fg">(self, default)</span>
+<span class="ansi-green-intense-fg ansi-bold">   3626</span>     <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   3627</span>       <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_enforce_nesting<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 3628</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>stack<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> default<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   3629</span>           raise AssertionError(
+<span class="ansi-green-intense-fg ansi-bold">   3630</span>               <span class="ansi-blue-fg">&#34;Nesting violated for default stack of %s objects&#34;</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
 </div>
 </div>
 
