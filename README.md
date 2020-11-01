@@ -1,5 +1,5 @@
 # Udacity-Deep-Learning
-This repo contains the projects which were required for the Undacities Deep Learning course.
+This repo contains the projects which were required for the Undacity's Deep Learning course.
 
  - Project 1: dlnd-your-first-neural-network
  - Project 2: dlnd_image_classification
